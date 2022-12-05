@@ -4,6 +4,7 @@ The page shows how we can use CXL memory as normal RAM.
 1. Linux kernel is compiled with CXL support. Check [here](https://sunfishho.github.io/jekyll/update/2022/07/07/setting-up-qemu-cxl.html) for more detailed instructions.
 2. The ndctl tool has been installed. Check [ndctl ](https://github.com/pmem/ndctl) for instructions to compile and install ndctl tools (cxl, ndctl and daxctl).
 3. Installing cxl related modules (if compared as kernel modules): ``` modprobe -a cxl_acpi cxl_core cxl_pci cxl_port cxl_mem```
+4. qemu should be patched with [hw/i386/pc.c: CXL Fixed Memory Window should not reserve e820 in bios](https://lore.kernel.org/linux-cxl/20221026004737.3646-2-gregory.price@memverge.com/).
 
 ## Step 1: Create a cxl region with cxl command
 * For example: **cxl create-region -m -d decoder0.0 -w 1 mem0 -s 512M**, the output looks below. We can also use **cxl list -R** command to show the region created.
